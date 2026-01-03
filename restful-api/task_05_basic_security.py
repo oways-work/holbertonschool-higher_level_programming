@@ -13,7 +13,7 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 
 # Configuration for JWT
-app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # Change this in production
+app.config['JWT_SECRET_KEY'] = 'super-secret-key'
 jwt = JWTManager(app)
 
 # User data stored in memory
@@ -91,13 +91,11 @@ def admin_only():
     Route accessible only to admins.
     """
     current_user = get_jwt_identity()
-    
-    # Depending on how the token was created, identity might be a dict or string.
-    # We passed a dict in login(), so we access it as a dict here.
+
+    # Identity is a dict because we passed a dict to create_access_token
     if isinstance(current_user, dict):
         role = current_user.get('role')
     else:
-        # Fallback if identity is just username (should not happen with this code)
         role = None
 
     if role != 'admin':
@@ -134,4 +132,5 @@ def handle_needs_fresh_token_error(err):
 
 
 if __name__ == '__main__':
-    # Changed host to 0.0.0.0 to fix Connection Refused errors in checker
+    # Using 0.0.0.0 is crucial for the checker to connect
+    app.run(host='0.0.0.0', port=5000)
