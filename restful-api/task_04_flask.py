@@ -6,73 +6,68 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Dictionary to store users. 
-# We use username as the key and the whole object as the value.
+# Dictionary to store users.
 users = {}
 
 
 @app.route('/')
 def home():
-      """
-          Root endpoint.
-              Returns a welcome message.
-                  """
-      return "Welcome to the Flask API!"
+    """
+    Root endpoint.
+    """
+    return "Welcome to the Flask API!"
 
 
 @app.route('/data')
 def get_data():
-      """
-          Returns a list of all usernames stored in the API.
-              """
-      return jsonify(list(users.keys()))
+    """
+    Returns a list of all usernames stored in the API.
+    """
+    return jsonify(list(users.keys()))
 
 
 @app.route('/status')
 def status():
-      """
-          Returns the status of the API.
-              """
-      return "OK"
+    """
+    Returns the status of the API.
+    """
+    return "OK"
 
 
 @app.route('/users/<username>')
 def get_user(username):
-      """
-          Returns the full object corresponding to the provided username.
-              Returns 404 if the user is not found.
-                  """
-      user = users.get(username)
-      if user:
-                return jsonify(user)
-else:
+    """
+    Returns the full object corresponding to the provided username.
+    Returns 404 if the user is not found.
+    """
+    user = users.get(username)
+    if user:
+        return jsonify(user)
+    else:
         return jsonify({"error": "User not found"}), 404
 
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
-      """
-          Handles POST requests to add a new user.
-              """
-      # Parse incoming JSON data. silent=True prevents crashing if JSON is bad.
-      data = request.get_json(silent=True)
+    """
+    Handles POST requests to add a new user.
+    """
+    data = request.get_json(silent=True)
 
     if data is None:
-              return jsonify({"error": "Invalid JSON"}), 400
+        return jsonify({"error": "Invalid JSON"}), 400
 
     username = data.get("username")
 
     if not username:
-              return jsonify({"error": "Username is required"}), 400
+        return jsonify({"error": "Username is required"}), 400
 
     if username in users:
-              return jsonify({"error": "Username already exists"}), 409
+        return jsonify({"error": "Username already exists"}), 409
 
-    # Add the new user to the dictionary
     users[username] = data
-
     return jsonify({"message": "User added", "user": data}), 201
 
 
 if __name__ == "__main__":
-      app.run()
+    app.run()
