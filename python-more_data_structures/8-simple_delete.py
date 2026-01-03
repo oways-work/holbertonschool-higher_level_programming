@@ -1,5 +1,9 @@
 #!/usr/bin/python3
+"""Defines a function that deletes a key."""
+
+
 def simple_delete(a_dictionary, key=""):
-          if key in a_dictionary:
-                        del a_dictionary[key]
-                    return a_dictionary
+    """Deletes a key in a dictionary."""
+    if key in a_dictionary:
+        del a_dictionary[key]
+    return a_dictionary
