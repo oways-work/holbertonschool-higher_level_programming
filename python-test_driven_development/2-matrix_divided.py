@@ -5,9 +5,13 @@
 def matrix_divided(matrix, div):
     """Divides all elements of a matrix by a number."""
     msg = "matrix must be a matrix (list of lists) of integers/floats"
-    if not isinstance(matrix, list) or not matrix or not all(isinstance(row, list) for row in matrix):
+    if (
+        not isinstance(matrix, list)
+        or not matrix
+        or not all(isinstance(row, list) for row in matrix)
+    ):
         raise TypeError(msg)
-    
+
     row_len = len(matrix[0])
     for row in matrix:
         if len(row) != row_len:
