@@ -1,36 +1,28 @@
 #!/usr/bin/python3
 """
-This module provides the function `text_indentation`.
-It splits text into blocks based on specific punctuation marks.
+Module that supplies a function to indent text.
 """
 
 
 def text_indentation(text):
-      """
-          Prints a text with 2 new lines after each of these characters: ., ? and :
-
-              Args:
-                      text: The string to be formatted and printed.
-
-                          Raises:
-                                  TypeError: If text is not a string.
-                                      """
-      if not isinstance(text, str):
-                raise TypeError("text must be a string")
-
-      # Characters that trigger two new lines
-      special_chars = [".", "?", ":"]
+    """
+    Prints a text with 2 new lines after each of these characters: ., ? and :
+    """
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
 
     c = 0
-    # Trim leading/trailing whitespace from the entire block first
-    text = text.strip()
+    # Skip initial spaces
+    while c < len(text) and text[c] == ' ':
+        c += 1
 
     while c < len(text):
-              print(text[c], end="")
-              if text[c] in special_chars:
-                            print("\n")
-                            # Skip all subsequent spaces after the special character
-                            if c + 1 < len(text):
-                                              while c + 1 < len(text) and text[c + 1] == ' ':
-                                                                    c += 1
-                                                        c += 1
+        print(text[c], end="")
+        if text[c] == "\n" or text[c] in ".?:":
+            if text[c] in ".?:":
+                print("\n")
+            c += 1
+            while c < len(text) and text[c] == ' ':
+                c += 1
+            continue
+        c += 1
