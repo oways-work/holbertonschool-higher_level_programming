@@ -1,59 +1,33 @@
 #!/usr/bin/python3
-"""Module for abstract Animal class and its subclasses.
-
-This module defines an abstract Animal class using ABC and provides
-concrete implementations through Dog and Cat subclasses.
 """
-
+Module for Abstract Animal Class and its Subclasses.
+"""
 from abc import ABC, abstractmethod
 
 
 class Animal(ABC):
-    """Abstract base class representing an animal.
-
-    This class serves as a blueprint for all animal subclasses,
-    requiring them to implement the sound method.
     """
-
+    Abstract base class for animals.
+    """
     @abstractmethod
     def sound(self):
-        """Abstract method that should return the sound of the animal.
-
-        This method must be implemented by all subclasses.
-
-        Returns:
-            str: The sound made by the animal
-        """
+        """Abstract method for animal sound."""
         pass
 
 
 class Dog(Animal):
-    """A Dog class that inherits from Animal.
-
-    This class represents a dog and implements the sound method
-    to return the sound a dog makes.
     """
-
+    Dog class inheriting from Animal.
+    """
     def sound(self):
-        """Return the sound a dog makes.
-
-        Returns:
-            str: "Bark"
-        """
+        """Return the sound of a dog."""
         return "Bark"
 
 
 class Cat(Animal):
-    """A Cat class that inherits from Animal.
-
-    This class represents a cat and implements the sound method
-    to return the sound a cat makes.
     """
-
+    Cat class inheriting from Animal.
+    """
     def sound(self):
-        """Return the sound a cat makes.
-
-        Returns:
-            str: "Meow"
-        """
+        """Return the sound of a cat."""
         return "Meow"
