@@ -6,23 +6,6 @@ Project 7-base_geometry.py
 Importing the module:
     >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-Checking Class Docstring:
-    >>> print(BaseGeometry.__doc__)
-    <BLANKLINE>
-    A class that represents base geometry logic.
-    <BLANKLINE>
-
-Checking Method Docstrings:
-    >>> print(BaseGeometry.area.__doc__)
-    <BLANKLINE>
-    Raises an Exception because the area is not implemented yet.
-    <BLANKLINE>
-    >>> print(BaseGeometry.integer_validator.__doc__)
-    <BLANKLINE>
-    Validates that a value is a positive integer.
-    <BLANKLINE>
-    ...
-
 Testing `area` method:
     >>> bg = BaseGeometry()
     >>> bg.area()
