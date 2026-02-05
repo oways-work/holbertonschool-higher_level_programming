@@ -1,4 +1,4 @@
-const url = 'https://hellosalut.stefanbohacek.dev/?lang=fr';
+const url = 'https://hellosalut.stefanbohacek.com/?lang=fr';
 const helloDiv = document.querySelector('#hello');
 
 fetch(url)
